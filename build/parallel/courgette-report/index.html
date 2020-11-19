@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Courgette-JVM Report</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link href="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/css/core.min.css" rel="stylesheet">
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <li class="navbar-brand" href="#">Courgette-JVM Report</li>
+</nav>
+
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+        <!-- Result Cards -->
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 mb-3">
+                <div class="card text-white bg-primary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw"></i>
+                        </div>
+                        <div class="mr-10">
+                            Total Features
+                        </div>
+                    </div>
+                    <div class="card-footer text-white clearfix small z-1" style="cursor: pointer;"
+                         onclick="setSearch('');">
+                        <span class="float-left text-white" id="card-total">2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-3">
+                <div class="card text-white bg-success o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw"></i>
+                        </div>
+                        <div class="mr-10">
+                            Passed Features
+                        </div>
+                    </div>
+                    <div class="card-footer text-white clearfix small z-1" style="cursor: pointer;"
+                         onclick="setSearch('Passed');">
+                        <span class="float-left text-white" id="card-passed">1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-3">
+                <div class="card text-white bg-danger o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw"></i>
+                        </div>
+                        <div class="mr-10">
+                            Failed Features
+                        </div>
+                    </div>
+                    <div class="card-footer text-white clearfix small z-1" style="cursor: pointer;"
+                         onclick="setSearch('Failed');">
+                        <span class="float-left text-white" id="card-failed">1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-3">
+                <div class="card text-white bg-warning o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw"></i>
+                        </div>
+                        <div class="mr-10">
+                            Re-run Features
+                        </div>
+                    </div>
+                    <div class="card-footer text-white clearfix small z-1" style="cursor: pointer;"
+                    onclick="setSearch('Rerun');">
+                        <span class="float-left" id="card-rerun">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa"></i>Run Information
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Timestamp:
+                            </div>
+                            <div>2020-11-19T09:49:05.279389600Z</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Duration:
+                            </div>
+                            <div>0 min, 22 sec</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Parallel Threads:
+                            </div>
+                            <div>10</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Parallel Run Level:
+                            </div>
+                            <div>Feature</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Rerun Failed:
+                            </div>
+                            <div>false</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Cucumber Tags:
+                            </div>
+                            <div>@statuscodes or @forgotpassword</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Cucumber Features:
+                            </div>
+                            <div>src/test/resources/features</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="mt-3 mb-3">
+                        <canvas id="pieChart" width="100%" height="321"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Table -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i>
+                Results
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th width="95%">Feature Name</th>
+                            <th>Result</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                                   <td>
+                                        <a href="" data-toggle="collapse" data-target="#46455094-3e51-4863-927a-3a69ade41965">HTTP status codes</a>
+                                        <div class="collapse mt-2" id="46455094-3e51-4863-927a-3a69ade41965">
+          <hr>
+                                            <div class="row">
+                                                <a href="" data-toggle="modal" data-target="#2188ddfd-704c-4a9a-8abd-bb5879f4d03c" id="child-row" class="col-lg-9">Check the status HTTP status codes
+                                                </a>
+                                                <div class="col-lg-2">
+                                                    <span class="float-right badge badge-success">Passed</span>
+                                                </div>
+                                            </div>
+          <hr>
+                                            <div class="row">
+                                                <a href="" data-toggle="modal" data-target="#042fbf05-2a29-47a6-b3fd-0499fb133234" id="child-row" class="col-lg-9">Check the status HTTP status codes
+                                                </a>
+                                                <div class="col-lg-2">
+                                                    <span class="float-right badge badge-success">Passed</span>
+                                                </div>
+                                            </div>
+          <hr>
+                                            <div class="row">
+                                                <a href="" data-toggle="modal" data-target="#b7f59855-9977-4637-8e2e-c0e0e154d3c4" id="child-row" class="col-lg-9">Check the status HTTP status codes
+                                                </a>
+                                                <div class="col-lg-2">
+                                                    <span class="float-right badge badge-success">Passed</span>
+                                                </div>
+                                            </div>
+</td>
+                                    <td>
+                                        <span class="float-left badge badge-success">Passed</span>
+                                    </td>
+                                </tr>
+<tr>
+                                   <td>
+                                        <a href="" data-toggle="collapse" data-target="#b51675d6-2bc5-4c0b-8b7e-e681a45fbcf9">Forgot password</a>
+                                        <div class="collapse mt-2" id="b51675d6-2bc5-4c0b-8b7e-e681a45fbcf9">
+          <hr>
+                                            <div class="row">
+                                                <a href="" data-toggle="modal" data-target="#44d0c88a-809a-4846-a85e-c315acdfa059" id="child-row" class="col-lg-9">A valid email id is allowed
+                                                </a>
+                                                <div class="col-lg-2">
+                                                    <span class="float-right badge badge-success">Passed</span>
+                                                </div>
+                                            </div>
+          <hr>
+                                            <div class="row">
+                                                <a href="" data-toggle="modal" data-target="#49d4d20a-17d4-4053-bdbe-1c49009a4dc9" id="child-row" class="col-lg-9">An invalid email is not allowed
+                                                </a>
+                                                <div class="col-lg-2">
+                                                    <span class="float-right badge badge-danger">Failed</span>
+                                                </div>
+                                            </div>
+</td>
+                                    <td>
+                                        <span class="float-left badge badge-danger">Failed</span>
+                                    </td>
+                                </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+    <!-- Modals -->
+    <div class="modal fade" id="2188ddfd-704c-4a9a-8abd-bb5879f4d03c" tabindex="-1" role="dialog" aria-labelledby="2188ddfd-704c-4a9a-8abd-bb5879f4d03c" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header text-white bg-dark">
+<span class="modal-title"><h5>Check the status HTTP status codes</h5>
+<div class="font-italic text-muted">statuscodes.feature - line 9</div></span>
+<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+theinternet.TestSteps.setUp()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">3570 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Given A User Navigates to StatusCodes Page
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">3251 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+When A User Clicks on status Code 200
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">290 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Then Application displays the message 200
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">31 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+theinternet.TestSteps.tearDown()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">622 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="042fbf05-2a29-47a6-b3fd-0499fb133234" tabindex="-1" role="dialog" aria-labelledby="042fbf05-2a29-47a6-b3fd-0499fb133234" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header text-white bg-dark">
+<span class="modal-title"><h5>Check the status HTTP status codes</h5>
+<div class="font-italic text-muted">statuscodes.feature - line 10</div></span>
+<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+theinternet.TestSteps.setUp()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">3035 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Given A User Navigates to StatusCodes Page
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">2473 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+When A User Clicks on status Code 301
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">261 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Then Application displays the message 301
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">28 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+theinternet.TestSteps.tearDown()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">605 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="b7f59855-9977-4637-8e2e-c0e0e154d3c4" tabindex="-1" role="dialog" aria-labelledby="b7f59855-9977-4637-8e2e-c0e0e154d3c4" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header text-white bg-dark">
+<span class="modal-title"><h5>Check the status HTTP status codes</h5>
+<div class="font-italic text-muted">statuscodes.feature - line 11</div></span>
+<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+theinternet.TestSteps.setUp()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">3082 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Given A User Navigates to StatusCodes Page
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">2759 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+When A User Clicks on status Code 404
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">271 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Then Application displays the message 404
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">24 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+theinternet.TestSteps.tearDown()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">607 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="44d0c88a-809a-4846-a85e-c315acdfa059" tabindex="-1" role="dialog" aria-labelledby="44d0c88a-809a-4846-a85e-c315acdfa059" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header text-white bg-dark">
+<span class="modal-title"><h5>A valid email id is allowed</h5>
+<div class="font-italic text-muted">forgotpassword.feature - line 4</div></span>
+<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+theinternet.TestSteps.setUp()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">3566 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Given Navigate to Page ForgotPassword
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">2737 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+When A User enters a valid email id
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">66 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+And A User clicks on Retrieve password button
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">1201 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Then Application shows that the email has been sent.
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">29 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+theinternet.TestSteps.tearDown()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">621 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="49d4d20a-17d4-4053-bdbe-1c49009a4dc9" tabindex="-1" role="dialog" aria-labelledby="49d4d20a-17d4-4053-bdbe-1c49009a4dc9" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header text-white bg-dark">
+<span class="modal-title"><h5>An invalid email is not allowed</h5>
+<div class="font-italic text-muted">forgotpassword.feature - line 10</div></span>
+<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+theinternet.TestSteps.setUp()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">3087 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Given Navigate to Page ForgotPassword
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">4378 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+When A User enters a invalid email id
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">60 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+And A User clicks on Retrieve password button
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">881 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Then Application does not show that email has been sent.
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">27 ms</span>
+<span class="badge badge-danger">Failed</span>
+</span>
+</div>
+</div>
+<div class="row mt-2">
+<div class="col-lg-12 text-danger" style="overflow-wrap:break-word;">
+java.lang.AssertionError: 
+Expected: not "Your e-mail's been sent!"
+     but: was "Your e-mail's been sent!"
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
+	at theinternet.TestSteps.applicationDoesNotShowThatEmailHasBeenSent(TestSteps.java:65)
+	at ✽.Application does not show that email has been sent.(file:///C:/Users/Anna_Poimenova/IdeaProjects/NewJavaPro/src/test/resources/features/forgotpassword.feature:14)
+
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+theinternet.TestSteps.tearDown()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">632 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+<!-- /.content-wrapper -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/jquery.easing.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/jquery.dataTables.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/dataTables.bootstrap4.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/mdb.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/Chart.min.js"></script>
+
+<script>
+    var passed = $('#card-passed').text();
+    var failed = $('#card-failed').text();
+    var rerun = $('#card-rerun').text();
+
+    var ctxP = document.getElementById("pieChart").getContext('2d');
+    var pieChart = new Chart(ctxP, {
+        type: 'pie',
+        data: {
+            labels: ["Passed", "Failed", "Re-run"],
+            datasets: [{
+                data: [passed, failed, rerun],
+                backgroundColor: ["#28a745", "#dc3545", "#ffbb33"]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
+
+<script>
+    function setSearch(criteria) {
+        var search = "\"" + criteria + "\"";
+        if (criteria.length < 2) {
+            search = ''
+        }
+        $("input[type='search']").val(search).trigger($.Event("keyup", {keyCode: 13}));
+    }
+</script>
+
+</body>
+
+</html>
