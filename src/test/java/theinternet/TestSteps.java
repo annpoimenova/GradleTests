@@ -7,10 +7,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.*;
 import java.nio.file.Paths;
+
+import static com.codeborne.selenide.Selenide.open;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -20,7 +24,7 @@ public class TestSteps{
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver",
-                Paths.get("src/test/resources/chromedriver_win32/chromedriver.exe").toString());
+                Paths.get("src/test/resources/87chromedriver/chromedriver.exe").toString());
         if (driver == null) {
             driver = new ChromeDriver();
         }
@@ -36,6 +40,24 @@ public class TestSteps{
     @Given("Navigate to Page ForgotPassword")
     public void navigateToPageForgotPassword() {
         driver.navigate().to("https://the-internet.herokuapp.com/forgot_password");
+    }
+
+    @Given("Navigate to Habr")
+    public void navigateToHabr() {
+        open("https://habr.com/");
+    }
+
+    @When("Search in habr.com")
+    public void searchByWord() {
+        $("#search-form-btn").click();
+        $("#search-form-field").sendKeys("Selenium");
+        $("#search-form-field").sendKeys(Keys.ENTER);
+    }
+
+    @Then("First result contains Selenium")
+    public void checkResult() {
+        String a = $(By.id("search-form-field")).getAttribute("placeholder");
+        assertThat(a, is("Search"));
     }
 
     @When("A User enters a valid email id")

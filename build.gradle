@@ -22,4 +22,5 @@ dependencies {
     testCompile group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
     // https://mvnrepository.com/artifact/io.github.prashant-ramcharan/courgette-jvm
     compile group: 'io.github.prashant-ramcharan', name: 'courgette-jvm', version: '4.6.2'
+    testCompile 'com.codeborne:selenide:5.16.0'
 }

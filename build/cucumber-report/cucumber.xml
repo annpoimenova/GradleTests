@@ -1,60 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite failures="1" name="Test Suite" skipped="0" tests="5" time="38.722">
-
-<testcase classname="HTTP status codes" name="Check the status HTTP status codes" time="7.84">
-            
-    <system-out><![CDATA[Given A User Navigates to StatusCodes Page..................................passed
-When A User Clicks on status Code 200.......................................passed
-Then Application displays the message 200...................................passed
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="483.005">
+    <testcase classname="Forgot password" name="Check search on habr" time="482.786">
+        <system-out><![CDATA[Given Navigate to Habr......................................................passed
+When Search in habr.com.....................................................passed
+Then First result contains Selenium.........................................passed
 ]]></system-out>
-        
-</testcase>
-
-<testcase classname="HTTP status codes" name="Check the status HTTP status codes 2" time="6.409">
-            
-    <system-out><![CDATA[Given A User Navigates to StatusCodes Page..................................passed
-When A User Clicks on status Code 301.......................................passed
-Then Application displays the message 301...................................passed
-]]></system-out>
-        
-</testcase>
-
-<testcase classname="HTTP status codes" name="Check the status HTTP status codes 3" time="6.751">
-            
-    <system-out><![CDATA[Given A User Navigates to StatusCodes Page..................................passed
-When A User Clicks on status Code 404.......................................passed
-Then Application displays the message 404...................................passed
-]]></system-out>
-        
-</testcase>
-
-<testcase classname="Forgot password" name="A valid email id is allowed" time="8.284">
-            
-    <system-out><![CDATA[Given Navigate to Page ForgotPassword.......................................passed
-When A User enters a valid email id.........................................passed
-And A User clicks on Retrieve password button...............................passed
-Then Application shows that the email has been sent.........................passed
-]]></system-out>
-        
-</testcase>
-
-<testcase classname="Forgot password" name="An invalid email is not allowed" time="9.072">
-            
-    <failure message="&#13;&#10;Expected: not &quot;Your e-mail's been sent!&quot;&#13;&#10;     but: was &quot;Your e-mail's been sent!&quot;" type="java.lang.AssertionError"><![CDATA[Given Navigate to Page ForgotPassword.......................................passed
-When A User enters a invalid email id.......................................passed
-And A User clicks on Retrieve password button...............................passed
-Then Application does not show that email has been sent.....................failed
-
-StackTrace:
-java.lang.AssertionError: 
-Expected: not "Your e-mail's been sent!"
-     but: was "Your e-mail's been sent!"
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
-	at theinternet.TestSteps.applicationDoesNotShowThatEmailHasBeenSent(TestSteps.java:65)
-	at ✽.Application does not show that email has been sent.(file:///C:/Users/Anna_Poimenova/IdeaProjects/NewJavaPro/src/test/resources/features/forgotpassword.feature:14)
-]]></failure>
-        
-</testcase>
-
+    </testcase>
 </testsuite>

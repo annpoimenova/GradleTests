@@ -1,395 +1,96 @@
-[ {
-  "line" : 2,
-  "elements" : [ {
-    "start_timestamp" : "2020-11-19T09:48:43.990Z",
-    "before" : [ {
-      "result" : {
-        "duration" : 3570637600,
-        "status" : "passed"
-      },
-      "match" : {
-        "location" : "theinternet.TestSteps.setUp()"
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "start_timestamp": "2020-11-25T15:00:50.891Z",
+        "before": [
+          {
+            "result": {
+              "duration": 4457639100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "theinternet.TestSteps.setUp()"
+            }
+          }
+        ],
+        "line": 3,
+        "name": "Check search on habr",
+        "description": "",
+        "id": "forgot-password;check-search-on-habr",
+        "after": [
+          {
+            "result": {
+              "duration": 1210768400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "theinternet.TestSteps.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 15867883000,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "Navigate to Habr",
+            "match": {
+              "location": "theinternet.TestSteps.navigateToHabr()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 4172884800,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "Search in habr.com",
+            "match": {
+              "location": "theinternet.TestSteps.searchByWord()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 456973608800,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "First result contains Selenium",
+            "match": {
+              "location": "theinternet.TestSteps.checkResult()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@forgotpassword"
+          }
+        ]
       }
-    } ],
-    "line" : 9,
-    "name" : "Check the status HTTP status codes",
-    "description" : "",
-    "id" : "http-status-codes;check-the-status-http-status-codes;;2",
-    "after" : [ {
-      "result" : {
-        "duration" : 622837500,
-        "status" : "passed"
-      },
-      "match" : {
-        "location" : "theinternet.TestSteps.tearDown()"
+    ],
+    "name": "Forgot password",
+    "description": "",
+    "id": "forgot-password",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/features/forgotpassword.feature",
+    "tags": [
+      {
+        "name": "@forgotpassword",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 1
+        }
       }
-    } ],
-    "type" : "scenario",
-    "keyword" : "Scenario Outline",
-    "steps" : [ {
-      "result" : {
-        "duration" : 3251274700,
-        "status" : "passed"
-      },
-      "line" : 4,
-      "name" : "A User Navigates to StatusCodes Page",
-      "match" : {
-        "location" : "theinternet.TestSteps.aUserNavigatesToStatusCodesPage()"
-      },
-      "keyword" : "Given "
-    }, {
-      "result" : {
-        "duration" : 290967000,
-        "status" : "passed"
-      },
-      "line" : 5,
-      "name" : "A User Clicks on status Code 200",
-      "match" : {
-        "arguments" : [ {
-          "val" : "200",
-          "offset" : 29
-        } ],
-        "location" : "theinternet.TestSteps.aUserClicksOnStatusCodeInput(java.lang.Integer)"
-      },
-      "keyword" : "When "
-    }, {
-      "result" : {
-        "duration" : 31914000,
-        "status" : "passed"
-      },
-      "line" : 6,
-      "name" : "Application displays the message 200",
-      "match" : {
-        "arguments" : [ {
-          "val" : "200",
-          "offset" : 33
-        } ],
-        "location" : "theinternet.TestSteps.applicationDisplaysTheMessageOutputCode(java.lang.Integer)"
-      },
-      "keyword" : "Then "
-    } ],
-    "tags" : [ {
-      "name" : "@statuscodes"
-    } ]
-  }, {
-    "start_timestamp" : "2020-11-19T09:48:51.839Z",
-    "before" : [ {
-      "result" : {
-        "duration" : 3035953000,
-        "status" : "passed"
-      },
-      "match" : {
-        "location" : "theinternet.TestSteps.setUp()"
-      }
-    } ],
-    "line" : 10,
-    "name" : "Check the status HTTP status codes",
-    "description" : "",
-    "id" : "http-status-codes;check-the-status-http-status-codes;;3",
-    "after" : [ {
-      "result" : {
-        "duration" : 605382700,
-        "status" : "passed"
-      },
-      "match" : {
-        "location" : "theinternet.TestSteps.tearDown()"
-      }
-    } ],
-    "type" : "scenario",
-    "keyword" : "Scenario Outline",
-    "steps" : [ {
-      "result" : {
-        "duration" : 2473944600,
-        "status" : "passed"
-      },
-      "line" : 4,
-      "name" : "A User Navigates to StatusCodes Page",
-      "match" : {
-        "location" : "theinternet.TestSteps.aUserNavigatesToStatusCodesPage()"
-      },
-      "keyword" : "Given "
-    }, {
-      "result" : {
-        "duration" : 261302200,
-        "status" : "passed"
-      },
-      "line" : 5,
-      "name" : "A User Clicks on status Code 301",
-      "match" : {
-        "arguments" : [ {
-          "val" : "301",
-          "offset" : 29
-        } ],
-        "location" : "theinternet.TestSteps.aUserClicksOnStatusCodeInput(java.lang.Integer)"
-      },
-      "keyword" : "When "
-    }, {
-      "result" : {
-        "duration" : 28922000,
-        "status" : "passed"
-      },
-      "line" : 6,
-      "name" : "Application displays the message 301",
-      "match" : {
-        "arguments" : [ {
-          "val" : "301",
-          "offset" : 33
-        } ],
-        "location" : "theinternet.TestSteps.applicationDisplaysTheMessageOutputCode(java.lang.Integer)"
-      },
-      "keyword" : "Then "
-    } ],
-    "tags" : [ {
-      "name" : "@statuscodes"
-    } ]
-  }, {
-    "start_timestamp" : "2020-11-19T09:48:58.250Z",
-    "before" : [ {
-      "result" : {
-        "duration" : 3082580200,
-        "status" : "passed"
-      },
-      "match" : {
-        "location" : "theinternet.TestSteps.setUp()"
-      }
-    } ],
-    "line" : 11,
-    "name" : "Check the status HTTP status codes",
-    "description" : "",
-    "id" : "http-status-codes;check-the-status-http-status-codes;;4",
-    "after" : [ {
-      "result" : {
-        "duration" : 607188300,
-        "status" : "passed"
-      },
-      "match" : {
-        "location" : "theinternet.TestSteps.tearDown()"
-      }
-    } ],
-    "type" : "scenario",
-    "keyword" : "Scenario Outline",
-    "steps" : [ {
-      "result" : {
-        "duration" : 2759193200,
-        "status" : "passed"
-      },
-      "line" : 4,
-      "name" : "A User Navigates to StatusCodes Page",
-      "match" : {
-        "location" : "theinternet.TestSteps.aUserNavigatesToStatusCodesPage()"
-      },
-      "keyword" : "Given "
-    }, {
-      "result" : {
-        "duration" : 271151600,
-        "status" : "passed"
-      },
-      "line" : 5,
-      "name" : "A User Clicks on status Code 404",
-      "match" : {
-        "arguments" : [ {
-          "val" : "404",
-          "offset" : 29
-        } ],
-        "location" : "theinternet.TestSteps.aUserClicksOnStatusCodeInput(java.lang.Integer)"
-      },
-      "keyword" : "When "
-    }, {
-      "result" : {
-        "duration" : 24931200,
-        "status" : "passed"
-      },
-      "line" : 6,
-      "name" : "Application displays the message 404",
-      "match" : {
-        "arguments" : [ {
-          "val" : "404",
-          "offset" : 33
-        } ],
-        "location" : "theinternet.TestSteps.applicationDisplaysTheMessageOutputCode(java.lang.Integer)"
-      },
-      "keyword" : "Then "
-    } ],
-    "tags" : [ {
-      "name" : "@statuscodes"
-    } ]
-  } ],
-  "name" : "HTTP status codes",
-  "description" : "",
-  "id" : "http-status-codes",
-  "keyword" : "Feature",
-  "uri" : "file:src/test/resources/features/statuscodes.feature",
-  "tags" : [ {
-    "name" : "@statuscodes",
-    "type" : "Tag",
-    "location" : {
-      "line" : 1,
-      "column" : 1
-    }
-  } ]
-} , {
-  "line" : 2,
-  "elements" : [ {
-    "start_timestamp" : "2020-11-19T09:48:43.968Z",
-    "before" : [ {
-      "result" : {
-        "duration" : 3566648000,
-        "status" : "passed"
-      },
-      "match" : {
-        "location" : "theinternet.TestSteps.setUp()"
-      }
-    } ],
-    "line" : 4,
-    "name" : "A valid email id is allowed",
-    "description" : "",
-    "id" : "forgot-password;a-valid-email-id-is-allowed",
-    "after" : [ {
-      "result" : {
-        "duration" : 621008600,
-        "status" : "passed"
-      },
-      "match" : {
-        "location" : "theinternet.TestSteps.tearDown()"
-      }
-    } ],
-    "type" : "scenario",
-    "keyword" : "Scenario",
-    "steps" : [ {
-      "result" : {
-        "duration" : 2737135600,
-        "status" : "passed"
-      },
-      "line" : 5,
-      "name" : "Navigate to Page ForgotPassword",
-      "match" : {
-        "location" : "theinternet.TestSteps.navigateToPageForgotPassword()"
-      },
-      "keyword" : "Given "
-    }, {
-      "result" : {
-        "duration" : 66717200,
-        "status" : "passed"
-      },
-      "line" : 6,
-      "name" : "A User enters a valid email id",
-      "match" : {
-        "location" : "theinternet.TestSteps.aUserEntersAValidEmailId()"
-      },
-      "keyword" : "When "
-    }, {
-      "result" : {
-        "duration" : 1201581900,
-        "status" : "passed"
-      },
-      "line" : 7,
-      "name" : "A User clicks on Retrieve password button",
-      "match" : {
-        "location" : "theinternet.TestSteps.aUserClicksOnRetrievePasswordButton()"
-      },
-      "keyword" : "And "
-    }, {
-      "result" : {
-        "duration" : 29918600,
-        "status" : "passed"
-      },
-      "line" : 8,
-      "name" : "Application shows that the email has been sent.",
-      "match" : {
-        "location" : "theinternet.TestSteps.applicationShowsThatTheEmailHasBeenSent()"
-      },
-      "keyword" : "Then "
-    } ],
-    "tags" : [ {
-      "name" : "@forgotpassword"
-    } ]
-  }, {
-    "start_timestamp" : "2020-11-19T09:48:52.257Z",
-    "before" : [ {
-      "result" : {
-        "duration" : 3087298500,
-        "status" : "passed"
-      },
-      "match" : {
-        "location" : "theinternet.TestSteps.setUp()"
-      }
-    } ],
-    "line" : 10,
-    "name" : "An invalid email is not allowed",
-    "description" : "",
-    "id" : "forgot-password;an-invalid-email-is-not-allowed",
-    "after" : [ {
-      "result" : {
-        "duration" : 632648000,
-        "status" : "passed"
-      },
-      "match" : {
-        "location" : "theinternet.TestSteps.tearDown()"
-      }
-    } ],
-    "type" : "scenario",
-    "keyword" : "Scenario",
-    "steps" : [ {
-      "result" : {
-        "duration" : 4378803300,
-        "status" : "passed"
-      },
-      "line" : 11,
-      "name" : "Navigate to Page ForgotPassword",
-      "match" : {
-        "location" : "theinternet.TestSteps.navigateToPageForgotPassword()"
-      },
-      "keyword" : "Given "
-    }, {
-      "result" : {
-        "duration" : 60839700,
-        "status" : "passed"
-      },
-      "line" : 12,
-      "name" : "A User enters a invalid email id",
-      "match" : {
-        "location" : "theinternet.TestSteps.aUserEntersAInvalidEmailId()"
-      },
-      "keyword" : "When "
-    }, {
-      "result" : {
-        "duration" : 881196800,
-        "status" : "passed"
-      },
-      "line" : 13,
-      "name" : "A User clicks on Retrieve password button",
-      "match" : {
-        "location" : "theinternet.TestSteps.aUserClicksOnRetrievePasswordButton()"
-      },
-      "keyword" : "And "
-    }, {
-      "result" : {
-        "error_message" : "java.lang.AssertionError: \r\nExpected: not \"Your e-mail's been sent!\"\r\n     but: was \"Your e-mail's been sent!\"\r\n\tat org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)\r\n\tat org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)\r\n\tat theinternet.TestSteps.applicationDoesNotShowThatEmailHasBeenSent(TestSteps.java:65)\r\n\tat ✽.Application does not show that email has been sent.(file:///C:/Users/Anna_Poimenova/IdeaProjects/NewJavaPro/src/test/resources/features/forgotpassword.feature:14)\r\n",
-        "duration" : 27841300,
-        "status" : "failed"
-      },
-      "line" : 14,
-      "name" : "Application does not show that email has been sent.",
-      "match" : {
-        "location" : "theinternet.TestSteps.applicationDoesNotShowThatEmailHasBeenSent()"
-      },
-      "keyword" : "Then "
-    } ],
-    "tags" : [ {
-      "name" : "@forgotpassword"
-    } ]
-  } ],
-  "name" : "Forgot password",
-  "description" : "",
-  "id" : "forgot-password",
-  "keyword" : "Feature",
-  "uri" : "file:src/test/resources/features/forgotpassword.feature",
-  "tags" : [ {
-    "name" : "@forgotpassword",
-    "type" : "Tag",
-    "location" : {
-      "line" : 1,
-      "column" : 1
-    }
-  } ]
-} ]
+    ]
+  }
+]
